@@ -56,4 +56,20 @@ public class FacturacionEntity {
     private String estadoDetraccion;
     private LocalDate fechaPagoDetraccion;
 
+    private String externalId;
+    private String documentoAfectado;
+    private String notaTipo;
+    private String notaMotivo;
+    private String respuestaCdr;
+    private String linkXml;
+    private String linkPdf;
+    private String linkCdr;
+    private String codigoHash;
+    private String codigoQr;
+
+    private String direccionDestino;
+    private String ubigeoDestino;
+
+
+
 }
