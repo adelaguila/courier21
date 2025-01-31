@@ -21,6 +21,9 @@ public class OrdenServicioEntity {
     @EqualsAndHashCode.Include
     private Long idOrdenServicio;
 
+    @Column(nullable = false, length = 50)
+    private String numero;
+
     @ManyToOne //FK
     @JoinColumn(name = "id_agencia", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_AGENCIA"))
     private AgenciaEntity agencia;
