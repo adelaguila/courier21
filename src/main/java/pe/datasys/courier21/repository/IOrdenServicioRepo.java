@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.OrdenServicioEntity;
+import pe.datasys.courier21.model.OrdenServicio;
 
-public interface IOrdenServicioRepo extends IGenericRepo<OrdenServicioEntity, Long> {
+public interface IOrdenServicioRepo extends IGenericRepo<OrdenServicio, Long> {
 
 }

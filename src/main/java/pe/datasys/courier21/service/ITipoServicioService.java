@@ -1,7 +1,7 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.TipoServicioEntity;
+import pe.datasys.courier21.model.TipoServicio;
 
-public interface ITipoServicioService extends ICRUD<TipoServicioEntity, Integer>{
+public interface ITipoServicioService extends ICRUD<TipoServicio, Integer>{
 }
 

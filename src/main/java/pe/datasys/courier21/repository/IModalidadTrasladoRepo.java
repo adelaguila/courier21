@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.ModalidadTrasladoEntity;
+import pe.datasys.courier21.model.ModalidadTraslado;
 
-public interface IModalidadTrasladoRepo extends IGenericRepo<ModalidadTrasladoEntity, String> {
+public interface IModalidadTrasladoRepo extends IGenericRepo<ModalidadTraslado, String> {
 
 }

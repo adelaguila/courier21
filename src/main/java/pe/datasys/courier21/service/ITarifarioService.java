@@ -1,7 +1,7 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.TarifarioEntity;
+import pe.datasys.courier21.model.Tarifario;
 
-public interface ITarifarioService extends ICRUD<TarifarioEntity, Long>{
+public interface ITarifarioService extends ICRUD<Tarifario, Long>{
 }
 

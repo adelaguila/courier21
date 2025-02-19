@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.FacturacionPagoEntity;
+import pe.datasys.courier21.model.FacturacionPago;
 
-public interface IFacturacionPagoRepo extends IGenericRepo<FacturacionPagoEntity, Long> {
+public interface IFacturacionPagoRepo extends IGenericRepo<FacturacionPago, Long> {
 
 }

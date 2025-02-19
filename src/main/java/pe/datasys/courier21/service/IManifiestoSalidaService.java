@@ -1,6 +1,6 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.ManifiestoSalidaEntity;
+import pe.datasys.courier21.model.ManifiestoSalida;
 
-public interface IManifiestoSalidaService extends ICRUD<ManifiestoSalidaEntity, Long>{
+public interface IManifiestoSalidaService extends ICRUD<ManifiestoSalida, Long>{
 }

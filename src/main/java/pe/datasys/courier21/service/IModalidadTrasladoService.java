@@ -1,6 +1,6 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.ModalidadTrasladoEntity;
+import pe.datasys.courier21.model.ModalidadTraslado;
 
-public interface IModalidadTrasladoService extends ICRUD<ModalidadTrasladoEntity, String>{
+public interface IModalidadTrasladoService extends ICRUD<ModalidadTraslado, String>{
 }

@@ -1,6 +1,17 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.AgenciaDestinoEntity;
+import org.springframework.data.domain.Page;
+import pe.datasys.courier21.commons.Filter;
+import pe.datasys.courier21.commons.SortModel;
+import pe.datasys.courier21.dto.tables.AgenciaDestinoTableDTO;
+import pe.datasys.courier21.model.AgenciaDestino;
 
-public interface IAgenciaDestinoService extends ICRUD<AgenciaDestinoEntity, Integer>{
+import java.util.List;
+
+public interface IAgenciaDestinoService extends ICRUD<AgenciaDestino, Integer>{
+
+    List<AgenciaDestino> findByAgenciaIdAgencia(Integer idAgencia);
+
+    Page<AgenciaDestinoTableDTO> paginate(Integer page, Integer rowPage, List<Filter> filters, List<SortModel> sorts);
+
 }

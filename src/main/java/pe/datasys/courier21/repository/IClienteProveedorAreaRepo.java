@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.ClienteProveedorAreaEntity;
+import pe.datasys.courier21.model.ClienteProveedorArea;
 
-public interface IClienteProveedorAreaRepo extends IGenericRepo<ClienteProveedorAreaEntity, Long> {
+public interface IClienteProveedorAreaRepo extends IGenericRepo<ClienteProveedorArea, Long> {
 
 }

@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.ManifiestoRepartoItemEntity;
+import pe.datasys.courier21.model.ManifiestoRepartoItem;
 
-public interface IManifiestoRepartoItemRepo extends IGenericRepo<ManifiestoRepartoItemEntity, Long> {
+public interface IManifiestoRepartoItemRepo extends IGenericRepo<ManifiestoRepartoItem, Long> {
 
 }

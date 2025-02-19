@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.RecojoEstadoEntity;
+import pe.datasys.courier21.model.RecojoEstado;
 
-public interface IRecojoEstadoRepo extends IGenericRepo<RecojoEstadoEntity, Integer> {
+public interface IRecojoEstadoRepo extends IGenericRepo<RecojoEstado, Integer> {
 
 }

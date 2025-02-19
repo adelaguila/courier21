@@ -1,7 +1,9 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.AgenciaDestinoEntity;
+import pe.datasys.courier21.model.AgenciaDestino;
 
-public interface IAgenciaDestinoRepo extends IGenericRepo<AgenciaDestinoEntity, Integer> {
+import java.util.List;
 
+public interface IAgenciaDestinoRepo extends IGenericRepo<AgenciaDestino, Integer> {
+    List<AgenciaDestino> findByAgenciaIdAgencia(Integer idAgencia);
 }

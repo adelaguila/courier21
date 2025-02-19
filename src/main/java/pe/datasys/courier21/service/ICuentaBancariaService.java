@@ -1,6 +1,6 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.CuentaBancariaEntity;
+import pe.datasys.courier21.model.CuentaBancaria;
 
-public interface ICuentaBancariaService extends ICRUD<CuentaBancariaEntity, String>{
+public interface ICuentaBancariaService extends ICRUD<CuentaBancaria, String>{
 }

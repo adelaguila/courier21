@@ -2,11 +2,14 @@ package pe.datasys.courier21.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.datasys.courier21.commons.PaginationModel;
 import pe.datasys.courier21.dto.AgenciaDTO;
-import pe.datasys.courier21.model.AgenciaEntity;
+import pe.datasys.courier21.dto.UbigeoDTO;
+import pe.datasys.courier21.model.Agencia;
 import pe.datasys.courier21.service.IAgenciaService;
 import pe.datasys.courier21.util.MapperUtil;
 
@@ -28,23 +31,36 @@ public class AgenciaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AgenciaDTO> findById(@PathVariable("id") Integer id) throws Exception{
-        AgenciaEntity obj = service.findById(id);
+        Agencia obj = service.findById(id);
 
-        //return new ResponseEntity<>(obj, HttpStatus.OK);
+        return ResponseEntity.ok(mapperUtil.map(obj, AgenciaDTO.class, "defaultMapper"));
+    }
+
+    @GetMapping("/codigo/{codigo}")
+    public ResponseEntity<AgenciaDTO> findOneByCodigo(@PathVariable("codigo") String codigo) throws Exception{
+        Agencia obj = service.findOneByCodigo(codigo);
+
         return ResponseEntity.ok(mapperUtil.map(obj, AgenciaDTO.class, "defaultMapper"));
     }
 
     @PostMapping
     public ResponseEntity<AgenciaDTO> save(@Valid @RequestBody AgenciaDTO dto) throws Exception{
-        AgenciaEntity obj = service.save(mapperUtil.map(dto, AgenciaEntity.class));
+        Agencia obj = service.save(mapperUtil.map(dto, Agencia.class));
 
         return new ResponseEntity<>(mapperUtil.map(obj, AgenciaDTO.class, "defaultMapper"), HttpStatus.CREATED);
-        //return ResponseEntity.created();
+
+    }
+
+    @PostMapping("/paginate")
+    public ResponseEntity<Page<AgenciaDTO>> paginate(@RequestBody PaginationModel pagination) {
+        Page<AgenciaDTO> pag = service.paginate(pagination.getPageNumber(), pagination.getRowsPerPage(),
+                pagination.getFilters(), pagination.getSorts());
+        return new ResponseEntity<>(pag, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AgenciaDTO> update(@Valid @PathVariable("id") Integer id, @RequestBody AgenciaDTO dto) throws Exception{
-        AgenciaEntity obj =  service.update(id, mapperUtil.map(dto, AgenciaEntity.class, "defaultMapper"));
+        Agencia obj =  service.update(id, mapperUtil.map(dto, Agencia.class, "defaultMapper"));
         return ResponseEntity.ok(mapperUtil.map(obj, AgenciaDTO.class, "defaultMapper"));
     }
 

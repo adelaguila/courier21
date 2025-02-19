@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.MonedaEntity;
+import pe.datasys.courier21.model.Moneda;
 
-public interface IMonedaRepo extends IGenericRepo<MonedaEntity, String> {
+public interface IMonedaRepo extends IGenericRepo<Moneda, String> {
 
 }

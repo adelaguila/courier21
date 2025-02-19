@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.TipoUnidadMovilEntity;
+import pe.datasys.courier21.model.TipoUnidadMovil;
 
-public interface ITipoUnidadMovilRepo extends IGenericRepo<TipoUnidadMovilEntity, Integer> {
+public interface ITipoUnidadMovilRepo extends IGenericRepo<TipoUnidadMovil, Integer> {
 
 }

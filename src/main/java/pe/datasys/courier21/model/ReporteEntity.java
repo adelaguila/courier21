@@ -24,7 +24,7 @@ public class ReporteEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_agencia", nullable = false, foreignKey = @ForeignKey(name = "FK_REPORTE_AGENCIA"))
-    private AgenciaEntity agencia;
+    private Agencia agencia;
 
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false, foreignKey = @ForeignKey(name = "FK_REPORTE_USER"))
@@ -32,7 +32,7 @@ public class ReporteEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_reporte", nullable = false, foreignKey = @ForeignKey(name = "FK_REPORTE_TIPO_REPORTE"))
-    private TipoReporteEntity tipoReporte;
+    private TipoReporte tipoReporte;
 
     @Column(nullable = false)
     private String recepcionista;

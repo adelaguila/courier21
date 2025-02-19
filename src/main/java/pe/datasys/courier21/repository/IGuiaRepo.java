@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.GuiaEntity;
+import pe.datasys.courier21.model.Guia;
 
-public interface IGuiaRepo extends IGenericRepo<GuiaEntity, Long> {
+public interface IGuiaRepo extends IGenericRepo<Guia, Long> {
 
 }

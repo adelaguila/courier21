@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.TarifarioEntity;
+import pe.datasys.courier21.model.Tarifario;
 
-public interface ITarifarioRepo extends IGenericRepo<TarifarioEntity, Long> {
+public interface ITarifarioRepo extends IGenericRepo<Tarifario, Long> {
 
 }

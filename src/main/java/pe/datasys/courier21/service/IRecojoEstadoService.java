@@ -1,6 +1,6 @@
 package pe.datasys.courier21.service;
 
-import pe.datasys.courier21.model.RecojoEstadoEntity;
+import pe.datasys.courier21.model.RecojoEstado;
 
-public interface IRecojoEstadoService extends ICRUD<RecojoEstadoEntity, Integer>{
+public interface IRecojoEstadoService extends ICRUD<RecojoEstado, Integer>{
 }

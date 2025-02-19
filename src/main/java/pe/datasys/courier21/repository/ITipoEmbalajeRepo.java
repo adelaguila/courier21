@@ -1,7 +1,7 @@
 package pe.datasys.courier21.repository;
 
-import pe.datasys.courier21.model.TipoEmbalajeEntity;
+import pe.datasys.courier21.model.TipoEmbalaje;
 
-public interface ITipoEmbalajeRepo extends IGenericRepo<TipoEmbalajeEntity, Integer> {
+public interface ITipoEmbalajeRepo extends IGenericRepo<TipoEmbalaje, Integer> {
 
 }
