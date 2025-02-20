@@ -23,24 +23,11 @@ import java.util.List;
 public class ClienteProveedorTableDTO {
     @EqualsAndHashCode.Include
     private Long idClienteProveedor;
-
-    @NotNull
-    @Size(max = 5)
     private String tipoDocumentoIdentidad;
-
-    @NotNull
-    @NotBlank
-    @NotEmpty
-    @Size(min = 8, max = 15)
     private String numeroDocumentoIdentidad;
-
-    @NotNull
-    @Size(min = 2, max = 150)
     private String nombreRazonSocial;
-
-    @NotNull
-    private Integer idTipoClienteProveedor;
-
-    @NotNull
+    private String nombreTipoClienteProveedor;
+    private String telefono;
+    private String correo;
     private boolean activo;
 }

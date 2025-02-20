@@ -28,4 +28,7 @@ public class SunatTipoDocumentoIdentidad {
     @Column(nullable = false)
     private Integer digitos;
 
+    @Column(nullable = false)
+    private String siglas;
+
 }

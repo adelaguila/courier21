@@ -8,9 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.datasys.courier21.commons.PaginationModel;
 import pe.datasys.courier21.dto.ClienteProveedorDTO;
+import pe.datasys.courier21.dto.ClienteProveedorDireccionDTO;
 import pe.datasys.courier21.dto.UbigeoDTO;
 import pe.datasys.courier21.dto.tables.ClienteProveedorTableDTO;
 import pe.datasys.courier21.model.ClienteProveedor;
+import pe.datasys.courier21.model.ClienteProveedorDireccion;
+import pe.datasys.courier21.service.IClienteProveedorDireccionService;
 import pe.datasys.courier21.service.IClienteProveedorService;
 import pe.datasys.courier21.util.MapperUtil;
 
@@ -21,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ClienteProveedorController {
     private final IClienteProveedorService service;
+    private final IClienteProveedorDireccionService serviceDireccion;
     private final MapperUtil mapperUtil;
 
     @GetMapping
@@ -75,4 +79,16 @@ public class ClienteProveedorController {
         return ResponseEntity.noContent().build();
     }
 
+    @PutMapping("/direccion/{id}")
+    public ResponseEntity<ClienteProveedorDireccionDTO> updateDireccion(@Valid @PathVariable("id") Long id, @RequestBody ClienteProveedorDireccionDTO dto) throws Exception{
+        ClienteProveedorDireccion obj =  serviceDireccion.update(id, mapperUtil.map(dto, ClienteProveedorDireccion.class, "defaultMapper"));
+        return ResponseEntity.ok(mapperUtil.map(obj, ClienteProveedorDireccionDTO.class, "defaultMapper"));
+    }
+
+    @DeleteMapping("/direccion{id}")
+    public ResponseEntity<Void> deleteDireccion(@PathVariable("id") Long id) throws Exception{
+        serviceDireccion.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+    
 }

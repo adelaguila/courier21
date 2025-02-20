@@ -36,13 +36,13 @@ public class ClienteProveedorServiceImpl extends CRUDImpl<ClienteProveedor, Long
     public Page<ClienteProveedorTableDTO> paginate(Integer page, Integer rowPage, List<Filter> filters, List<SortModel> sorts) {
         PaginateUtil paginateUtil = new PaginateUtil();
 
-        List<String> columnas = Arrays.asList("idClienteProveedor", "tipoDocumentoIdentidad.idSunatTipoDocumentoIdentidad", "numeroDocumentoIdentidad", "nombreRazonSocial", "tipoClienteProveedor.idTipoClienteProveedor", "activo");
+        List<String> columnas = Arrays.asList("idClienteProveedor", "tipoDocumentoIdentidad.idSunatTipoDocumentoIdentidad", "numeroDocumentoIdentidad", "nombreRazonSocial", "tipoClienteProveedor.nombreTipoClienteProveedor", "telefono", "correo", "activo");
 
         String sqlFrom = " FROM ClienteProveedor a ";
 
         String sqlCount = "SELECT count(a) " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString();
 
-        String sqlSelect = "SELECT new pe.datasys.courier21.dto.tables.ClienteProveedorTableDTO(a.idClienteProveedor, a.tipoDocumentoIdentidad.idSunatTipoDocumentoIdentidad, a.numeroDocumentoIdentidad, a.nombreRazonSocial, a.tipoClienteProveedor.idTipoClienteProveedor, a.activo) " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString()
+        String sqlSelect = "SELECT new pe.datasys.courier21.dto.tables.ClienteProveedorTableDTO(a.idClienteProveedor, a.tipoDocumentoIdentidad.idSunatTipoDocumentoIdentidad, a.numeroDocumentoIdentidad, a.nombreRazonSocial, a.tipoClienteProveedor.nombreTipoClienteProveedor, a.telefono, a.correo, a.activo) " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString()
                 + paginateUtil.getOrder(sorts, columnas).toString();
 
         Query queryCount = entityManager.createQuery(sqlCount);

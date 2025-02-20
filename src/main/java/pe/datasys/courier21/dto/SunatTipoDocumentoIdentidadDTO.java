@@ -21,4 +21,9 @@ public class SunatTipoDocumentoIdentidadDTO {
     private String nombreSunatTipoDocumentoIdentidad;
 
     private Integer digitos;
+
+    @NotNull
+
+    @Size(min = 2, max = 5)
+    private String siglas;
 }
