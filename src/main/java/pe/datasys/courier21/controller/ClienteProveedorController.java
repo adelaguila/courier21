@@ -44,8 +44,12 @@ public class ClienteProveedorController {
     @GetMapping("/numero-documento-identidad/{numeroDocumentoIdentidad}")
     public ResponseEntity<ClienteProveedorDTO> findOneByNumeroDocumentoIdentidad(@PathVariable("numeroDocumentoIdentidad") String numeroDocumentoIdentidad) throws Exception{
         ClienteProveedor obj = service.findOneByNumeroDocumentoIdentidad(numeroDocumentoIdentidad);
+        ClienteProveedorDTO objDTO = null;
 
-        return ResponseEntity.ok(mapperUtil.map(obj, ClienteProveedorDTO.class, "defaultMapper"));
+        if(obj != null){
+            objDTO = mapperUtil.map(obj, ClienteProveedorDTO.class, "defaultMapper");
+        }
+        return ResponseEntity.ok(objDTO);
     }
 
     @GetMapping("/autocomplete/{term}")
@@ -85,7 +89,7 @@ public class ClienteProveedorController {
         return ResponseEntity.ok(mapperUtil.map(obj, ClienteProveedorDireccionDTO.class, "defaultMapper"));
     }
 
-    @DeleteMapping("/direccion{id}")
+    @DeleteMapping("/direccion/{id}")
     public ResponseEntity<Void> deleteDireccion(@PathVariable("id") Long id) throws Exception{
         serviceDireccion.delete(id);
         return ResponseEntity.noContent().build();

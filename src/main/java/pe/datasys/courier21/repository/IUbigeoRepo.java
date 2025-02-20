@@ -10,7 +10,7 @@ public interface IUbigeoRepo extends IGenericRepo<Ubigeo, Integer> {
 
     List<Ubigeo> findByDistritoContains(String distrito);
 
-    @Query("FROM Ubigeo u WHERE u.distrito LIKE :term ORDER BY u.departamento, u.provincia, u.distrito")
+    @Query("FROM Ubigeo u WHERE u.distrito LIKE :term ORDER BY u.distrito, u.provincia, u.departamento")
     List<Ubigeo> getAutocomplete(String term);
 
 }
