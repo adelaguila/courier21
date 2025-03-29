@@ -16,30 +16,30 @@ public class Tarifario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idTarifa;
+    private Long idTarifario;
 
-    @ManyToOne //FK
+    @ManyToOne
     @JoinColumn(name = "id_cliente_proveedor", nullable = true, foreignKey = @ForeignKey(name = "FK_TARIFARIO_CLIENTE_PROVEEDOR"))
     private ClienteProveedor clienteProveedor;
 
-    @ManyToOne //FK
+    @ManyToOne
     @JoinColumn(name = "id_cliente_proveedor_area", nullable = true, foreignKey = @ForeignKey(name = "FK_TARIFARIO_CLIENTE_PROVEEDOR_AREA"))
     private ClienteProveedorArea clienteProveedorArea;
 
-    @ManyToOne //FK
+    @ManyToOne
     @JoinColumn(name = "origen", nullable = false, foreignKey = @ForeignKey(name = "FK_TARIFARIO_ORIGEN"))
     private Ubigeo origen;
 
-    @ManyToOne //FK
+    @ManyToOne
     @JoinColumn(name = "destino", nullable = false, foreignKey = @ForeignKey(name = "FK_TARIFARIO_DESTINO"))
     private Ubigeo destino;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_tipo_servicio", nullable = true, foreignKey = @ForeignKey(name = "FK_TARIFARIO_TIPO_SERVICIO"))
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_servicio", nullable = false, foreignKey = @ForeignKey(name = "FK_TARIFARIO_TIPO_SERVICIO"))
     private TipoServicio tipoServicio;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_tipo_envio", nullable = true, foreignKey = @ForeignKey(name = "FK_TARIFARIO_TIPO_ENVIO"))
+    @ManyToOne
+    @JoinColumn(name = "id_tipo_envio", nullable = false, foreignKey = @ForeignKey(name = "FK_TARIFARIO_TIPO_ENVIO"))
     private TipoEnvio tipoEnvio;
 
     @Column(nullable = false, columnDefinition = "decimal(6, 2)")

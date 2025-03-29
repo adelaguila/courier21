@@ -43,4 +43,27 @@ public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
         getRepo().findById(id).orElseThrow(()-> new ModelNotFoundException("ID NOT FOUND: " + id));
         getRepo().deleteById(id);
     }
+
+    public String getFiltersColumns(String column, String operator, String parametro) {
+        String sql = "";
+        if (operator.equals("=")) {
+            sql = " AND ".concat(column).concat(" = ").concat(parametro);
+        }
+        if (operator.equals(">")) {
+            sql = " AND ".concat(column).concat(" > ").concat(parametro);
+        }
+        if (operator.equals(">=")) {
+            sql = " AND ".concat(column).concat(" >= ").concat(parametro);
+        }
+        if (operator.equals("<")) {
+            sql = " AND ".concat(column).concat(" < ").concat(parametro);
+        }
+        if (operator.equals("<")) {
+            sql = " AND ".concat(column).concat(" <= ").concat(parametro);
+        }
+        if (operator.equals("LIKE")) {
+            sql = " AND ".concat(column).concat(" LIKE concat(").concat("'%', ").concat(parametro).concat(", '%')");
+        }
+        return sql;
+    }
 }

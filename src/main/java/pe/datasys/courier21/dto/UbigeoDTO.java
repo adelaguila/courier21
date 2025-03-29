@@ -33,4 +33,13 @@ public class UbigeoDTO {
     @Size(min = 3, max = 150)
     private String distrito;
 
+    @NotNull
+    private AgenciaDTO agencia;
+
+    private double adicionalEntrega;
+
+    private double adicionalRecojo;
+
+    private boolean aceptaCollec;
+
 }

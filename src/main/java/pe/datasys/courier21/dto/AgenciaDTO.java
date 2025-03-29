@@ -44,7 +44,7 @@ public class AgenciaDTO {
     private String longitud;
 
     @NotNull
-    private UbigeoDTO ubigeo;
+    private Integer idUbigeo;
 
     @NotNull
     private TipoAgenciaDTO tipoAgencia;

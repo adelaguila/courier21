@@ -7,12 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.datasys.courier21.commons.PaginationModel;
+import pe.datasys.courier21.dto.ClienteProveedorAreaDTO;
 import pe.datasys.courier21.dto.ClienteProveedorDTO;
 import pe.datasys.courier21.dto.ClienteProveedorDireccionDTO;
 import pe.datasys.courier21.dto.UbigeoDTO;
 import pe.datasys.courier21.dto.tables.ClienteProveedorTableDTO;
 import pe.datasys.courier21.model.ClienteProveedor;
+import pe.datasys.courier21.model.ClienteProveedorArea;
 import pe.datasys.courier21.model.ClienteProveedorDireccion;
+import pe.datasys.courier21.service.IClienteProveedorAreaService;
 import pe.datasys.courier21.service.IClienteProveedorDireccionService;
 import pe.datasys.courier21.service.IClienteProveedorService;
 import pe.datasys.courier21.util.MapperUtil;
@@ -25,6 +28,7 @@ import java.util.List;
 public class ClienteProveedorController {
     private final IClienteProveedorService service;
     private final IClienteProveedorDireccionService serviceDireccion;
+    private final IClienteProveedorAreaService serviceArea;
     private final MapperUtil mapperUtil;
 
     @GetMapping
@@ -92,6 +96,18 @@ public class ClienteProveedorController {
     @DeleteMapping("/direccion/{id}")
     public ResponseEntity<Void> deleteDireccion(@PathVariable("id") Long id) throws Exception{
         serviceDireccion.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/area/{id}")
+    public ResponseEntity<ClienteProveedorAreaDTO> updateArea(@Valid @PathVariable("id") Long id, @RequestBody ClienteProveedorAreaDTO dto) throws Exception{
+        ClienteProveedorArea obj =  serviceArea.update(id, mapperUtil.map(dto, ClienteProveedorArea.class, "defaultMapper"));
+        return ResponseEntity.ok(mapperUtil.map(obj, ClienteProveedorAreaDTO.class, "defaultMapper"));
+    }
+
+    @DeleteMapping("/area/{id}")
+    public ResponseEntity<Void> deleteArea(@PathVariable("id") Long id) throws Exception{
+        serviceArea.delete(id);
         return ResponseEntity.noContent().build();
     }
     

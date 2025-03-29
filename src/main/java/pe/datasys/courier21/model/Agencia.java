@@ -48,9 +48,7 @@ public class Agencia implements Serializable {
     @Column(nullable = false)
     private String longitud;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_ubigeo", nullable = false, foreignKey = @ForeignKey(name = "FK_AGENCIA_UBIGEO"))
-    private Ubigeo ubigeo;
+    private Integer idUbigeo;
 
     @ManyToOne //FK
     @JoinColumn(name = "id_tipo_agencia", nullable = false, foreignKey = @ForeignKey(name = "FK_AGENCIA_TIPO_AGENCIA"))

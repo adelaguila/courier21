@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -17,29 +18,37 @@ import java.time.LocalDateTime;
 @Table(name = "ordenes_servicios")
 public class OrdenServicio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private Long idOrdenServicio;
+    @Column(nullable = false, length = 50, unique = true)
+    private String idOrdenServicio;
 
-    @Column(nullable = false, length = 50)
-    private String numero;
+    @ManyToOne
+    @JoinColumn(name = "agencia_origen", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_AGENCIA_ORIGEN"))
+    private Agencia agenciaOrigen;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_agencia", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_AGENCIA"))
-    private Agencia agencia;
+    @ManyToOne
+    @JoinColumn(name = "origen", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_ORIGEN"))
+    private Ubigeo origen;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_agencia_destino", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_AGENCIA_DESTINO"))
-    private AgenciaDestino destino;
+    @ManyToOne
+    @JoinColumn(name = "agencia_destino", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_AGENCIA_DESTINO"))
+    private Agencia agenciaDestino;
 
-    @ManyToOne //FK
+    @ManyToOne
+    @JoinColumn(name = "destino", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_DESTINO"))
+    private Ubigeo destino;
+
+    @ManyToOne
     @JoinColumn(name = "id_cliente_proveedor", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_CLIENTE_PROVEEDOR"))
     private ClienteProveedor cliente;
+
+    @Column(length = 100)
+    private String area;
 
     @Column(length = 100, nullable = false)
     private String remitente;
 
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String consignatario;
 
     @Column(length = 15)
@@ -67,46 +76,72 @@ public class OrdenServicio {
     private String referencia3;
 
     @Column(length = 3, nullable = false)
-    private Integer piezas;
+    private int piezas;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "decimal(6, 2)")
     private Double peso;
 
-    @Column( nullable = false)
-    private Double pesoMinimo;
+    @Column(length = 150)
+    private String contenido;
 
-    private BigDecimal tarifaMinima;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double pesoMinimo = 1.0;
 
-    private BigDecimal tarifaExeso;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double tarifaMinima = 0.0;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_tipo_orden_servicio", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_TIPO_ORDEN_SERVICIO"))
-    private TipoOrdenServicio tipoOrdenServicio;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double tarifaExeso = 0.0;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_tipo_envio", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_TIPO_ENVIO"))
-    private TipoEnvio tipoEnvio;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double adicionalPod = 0.0;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_tipo_servicio", nullable = false, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_TIPO_SERVICIO"))
-    private TipoServicio tipoServicio;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double adicionalTransferencia = 0.0;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_manifiesto_salida", nullable = true, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_MANIFIESTO_SALIDA"))
-    private ManifiestoSalida manifiestoSalida;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double adicionalOtro = 0.0;
 
-    @ManyToOne //FK
-    @JoinColumn(name = "id_manifiesto_reparto", nullable = true, foreignKey = @ForeignKey(name = "FK_ORDEN_SERVICIO_MANIFIESTO_REPARTO"))
-    private ManifiestoReparto manifiestoReparto;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double subtotal = 0.0;
 
-    private Long idFacturacion;
-    private Long idLiquidacionCliente;
-    private Long idLiquidacionAgencia;
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double igv = 0.0;
+
+    @Column(columnDefinition = "decimal(6, 2)")
+    private Double total = 0.0;
+
+    @Column(length = 50, nullable = false)
+    private String tipoOrdenServicio;
+
+    @Column(length = 50, nullable = false)
+    private String tipoPago;
+
+    @Column(length = 50, nullable = false)
+    private String tipoEnvio;
+
+    @Column(length = 50, nullable = false)
+    private String tipoServicio;
+
+    @Column(length = 50, nullable = false)
+    private String tipoEmbalaje;
+
+    private Long idManifiestoSalida = 0L;
+    private Long idManifiestoReparto = 0L;
+
+    private Long idFacturacion = 0L;
+    private Long idLiquidacionCliente = 0L;
+    private Long idLiquidacionAgencia = 0L;
 
     private LocalDateTime fechaHoraRegistro;
+    private LocalDateTime fechaHoraManifiestoSalida;
+    private LocalDateTime fechaHoraDespacho;
+    private LocalDateTime fechaHoraLlegada;
+    private LocalDateTime fechaHoraReparto;
     private LocalDateTime fechaHoraEntrega;
     private String recepcionista;
     private String dniRecepcionista;
     private String podVirtual;
-
+    private String estadoOperacion;
+    private String estadoFacturacion;
 }

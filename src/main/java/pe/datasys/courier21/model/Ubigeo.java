@@ -30,4 +30,17 @@ public class Ubigeo {
     @Column(length = 150, nullable = false)
     private String distrito;
 
+    @ManyToOne
+    @JoinColumn(name = "id_agencia", nullable = false, foreignKey = @ForeignKey(name = "FK_UBIGEO_AGENCIA"))
+    private Agencia agencia;
+
+    @Column(nullable = false, columnDefinition = "decimal(6, 2)")
+    private double adicionalEntrega = 0.0;
+
+    @Column(nullable = false, columnDefinition = "decimal(6, 2)")
+    private double adicionalRecojo = 0.0;
+
+    @Column(nullable = false)
+    private boolean aceptaCollec = false;
+
 }
