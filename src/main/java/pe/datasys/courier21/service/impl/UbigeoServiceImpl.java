@@ -50,13 +50,16 @@ public class UbigeoServiceImpl extends CRUDImpl<Ubigeo, Integer> implements IUbi
     public Page<UbigeoDTO> paginate(Integer page, Integer rowPage, List<Filter> filters, List<SortModel> sorts) {
         PaginateUtil paginateUtil = new PaginateUtil();
 
-        List<String> columnas = Arrays.asList("idUbigeo", "codigo", "departamento", "provincia", "distrito");
+        List<String> columnas = Arrays.asList("idUbigeo", "codigo", "departamento", "provincia", "distrito", "agencia.nombreAgencia");
 
         String sqlFrom = " FROM Ubigeo a ";
 
         String sqlCount = "SELECT count(a) " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString();
 
-        String sqlSelect = "SELECT a " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString()
+//        String sqlSelect = "SELECT a " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString()
+//                + paginateUtil.getOrder(sorts, columnas).toString();
+
+        String sqlSelect = "SELECT new pe.datasys.courier21.dto.tables.UbigeoTableDTO(a.idUbigeo, a.codigo, a.departamento, a.provincia, a.distrito, a.nombreAgencia, a.adicionalEntrega, a.adicionalRecojo, a.aceptaCollec) " + sqlFrom + paginateUtil.getFilters(filters, columnas).toString()
                 + paginateUtil.getOrder(sorts, columnas).toString();
 
         Query queryCount = entityManager.createQuery(sqlCount);
